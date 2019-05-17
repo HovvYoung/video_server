@@ -5,8 +5,8 @@ import (
 	"time"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/hovvyoung/video_server/defs"
-	"github.com/hovvyoung/video_server/utils"
+	"github.com/hovvyoung/video_server/api/defs"
+	"github.com/hovvyoung/video_server/api/utils"
 )
 
 // Move to conn.go.
@@ -69,7 +69,7 @@ func DeleteUser(loginName string, pwd string) error {
 	return nil
 }
 
-func AddNewVideo(aid int, name string) (*defs.VidoInfo, error) {
+func AddNewVideo(aid int, name string) (*defs.VideoInfo, error) {
 	//create uuid. And the format of DisplayCtime is not the same as db time.
 	vid, err := utils.NewUUID()
 	if err != nil {
