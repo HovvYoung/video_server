@@ -15,7 +15,7 @@ func InserSession(sid string, ttl int64, uname string) error {
 		return err
 	}
 
-	_, err = stmIns.Exec(sid, ttl, uname)
+	_, err = stmIns.Exec(sid, ttlstr, uname)
 	if err != nil {
 		return err
 	}
