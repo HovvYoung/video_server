@@ -20,6 +20,11 @@ func nowInMilli() int64 {
 	return time.Now().UnixNano()/1000000
 }
 
+func deleteExpiredSession(sid string) {
+	sessionMap.Delete(sid)
+	dbops.DeleteSession(sid)
+}
+
 func LoadSessionFromDB() {
 	r, err := dbops.RetrieveAllSessions()
 	if err != nil {

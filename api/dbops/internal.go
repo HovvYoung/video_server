@@ -8,7 +8,7 @@ import (
 	"github.com/hovvyoung/video_server/api/defs"
 )
 
-func InserSession(sid string, ttl int64, uname string) error {
+func InsertSession(sid string, ttl int64, uname string) error {
 	ttlstr := strconv.FormatInt(ttl, 10)
 	stmIns, err := dbConn.Prepare("INSERT INTO sessions (sessions_id, TTL, login_name) VALUES(?,?,?)")
 	if err != nil {
@@ -50,7 +50,7 @@ func RetrieveSession(sid string) (*defs.SimpleSession, error) {
 }
 
 
-func RetrieveAllSession() (*sync.Map, error) {
+func RetrieveAllSessions() (*sync.Map, error) {
 	m := &sync.Map{}
 	stmtOut, err := dbConn.Prepare("SELECT * FROM sessions")
 	if err != nil {
