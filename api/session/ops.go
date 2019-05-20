@@ -2,7 +2,7 @@ package session
 
 import (
 	"time"	//isExpired?
-	"sysn"	//save session
+	"sync"	//save session
 	"github.com/hovvyoung/video_server/api/defs"
 )
 
