@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 	"github.com/julienschmidt/httprouter"
-	//"github.com/hovvyoung/video_server/api/session"
+	"github.com/hovvyoung/video_server/api/session"
 )
 
 type middleWareHandler struct {
@@ -28,9 +28,25 @@ func RegisterHandles() *httprouter.Router {
 
 	router.POST("/user", CreateUser)
 
-	router.POST("/user/:user_name", Login)
+	router.POST("/user/:username", Login)
+
+	router.GET("/user/:username", GetUserInfo)
+
+	router.POST("/user/:username/videos", AddNewVideo)
+
+	router.GET("/user/:username/videos", ListAllVideos)
+
+	router.DELETE("/user/:username/videos/:vid-id", DeleteVideo)
+
+	router.POST("/videos/:vid-id/comments", PostComment)
+
+	router.GET("/videos/:vid-id/comments", ShowComments)
 
 	return router
+}
+
+func Prepare() {
+	session.LoadSessionsFromDB()	//sessions预处理, Load to local memory
 }
 
 func main() {
@@ -38,3 +54,10 @@ func main() {
 	mh := NewMiddleWareHandler(r)
 	http.ListenAndServe(":8000", mh)
 }
+
+/*upload
+logout*(not)
+ListVideos
+ShowComments
+PostComment
+DeleteVideo*/
