@@ -30,3 +30,8 @@ CREATE TABLE sessions
 	login_name TEXT
 );
 alter table sessions add PRIMARY KEY (session_id(64));
+
+CREATE TABLE video_del_rec
+(
+	video_id VARCHAR(64) NOT NULL PRIMARY KEY
+);
